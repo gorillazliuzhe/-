@@ -143,6 +143,11 @@ namespace 委托练习
             //_feature.Set(new Persion());
             //var d = _feature.Get<Persion>();
             //string s = d.wan();
+            Isx isx = new Isx();
+            IFeatureCollection _feature = new FeatureCollection();
+            _feature.Set<ITestin>(isx);
+            var d = _feature.Get<ITestin>();
+            string s = d.PathBase;
             #endregion
 
             #region 管道测试 和 下面的Startup测试 是结合的
@@ -349,21 +354,32 @@ namespace 委托练习
     public interface ITestin
     {
         void itest1();
+        string PathBase { get; }
+
     }
 
     public class Isx : ITestin
     {
+        // public string PathBase => throw new NotImplementedException();
+        public Isx()
+        {
+            PathBase = "123123";
+        }
         public void itest1()
         {
             Console.WriteLine("i1");
         }
+        public string PathBase { get; }
     }
 
-    public class Isx1 : ITestin
-    {
-        public void itest1()
-        {
-            Console.WriteLine("i2");
-        }
-    }
+   
+    //public class Isx1 : ITestin
+    //{
+    //    public string PathBase => throw new NotImplementedException();
+
+    //    public void itest1()
+    //    {
+    //        Console.WriteLine("i2");
+    //    }
+    //}
 }
